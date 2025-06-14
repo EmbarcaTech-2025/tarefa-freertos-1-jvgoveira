@@ -1,13 +1,13 @@
 
 # Tarefa: Roteiro de FreeRTOS #1 - EmbarcaTech 2025
 
-Autor: **Insira Seu Nome**
+Autor: **João Vitor G. de Olveira**
 
 Curso: Residência Tecnológica em Sistemas Embarcados
 
 Instituição: EmbarcaTech - HBr
 
-Campinas, ___ de 2025
+Brasilia, junho de 2025
 
 ---
 
