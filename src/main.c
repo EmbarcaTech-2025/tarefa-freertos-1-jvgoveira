@@ -34,7 +34,7 @@
 #define LED_B_PIN 12 // LED AZUL RGB BTDL
 
 #define BUZZER_A_PIN 21       // BUZZER ESQUERDO BTD
-#define BUZZER_FREQUENCY 2000 // Frequência do Buzzer em Hz
+#define BUZZER_FREQUENCY 8000 // Frequência do Buzzer em Hz
 
 #define BUTTON_A_PIN 5 // Botão A BTDL
 #define BUTTON_B_PIN 6 // Botão B BTDL
@@ -233,16 +233,10 @@ void buzzer_task(void *pvParameters)
   {
     // Liga o buzzer com 50% do duty (12 bits/2 -> 2048)
     pwm_set_gpio_level(BUZZER_A_PIN, 2048);
-    vTaskDelay(pdMS_TO_TICKS(100)); // Mantém ligado por 100ms
+    vTaskDelay(pdMS_TO_TICKS(100)); // Mantém ligado por 200ms
     pwm_set_gpio_level(BUZZER_A_PIN, 0);  // Desliga o buzzer
 
-    vTaskDelay(pdMS_TO_TICKS(100)); // Mantém ligado por 100ms
-
-    pwm_set_gpio_level(BUZZER_A_PIN, 2048);
-    vTaskDelay(pdMS_TO_TICKS(100)); // Mantém ligado por 100ms
-    pwm_set_gpio_level(BUZZER_A_PIN, 0);  // Desliga o buzzer
-
-    vTaskDelay(pdMS_TO_TICKS(700)); // Aguarda 700ms, completando ciclos de 1 seg
+    vTaskDelay(pdMS_TO_TICKS(900)); // Aguarda 700ms, completando ciclos de 1 seg
   }
 }
 
@@ -394,13 +388,13 @@ void oled_task(void *pvParameters)
     // Formata e exibe o status da tarefa Buzzer
     if (buzzer_state != eInvalid) 
     {
-      sprintf(buzzer_status_str, "Task Buzz: %s",(buzzer_state == eSuspended) ? "Suspenso" : "Run");
+      sprintf(buzzer_status_str, "Task Buzz: %s",(buzzer_state == eSuspended) ? "Suspended" : "Run");
     } 
     else 
     {
         sprintf(buzzer_status_str, "Buzzer: Handle Nulo");
     }
-    ssd1306_draw_string(&display, 0, 20, 1, buzzer_status_str); // Desenha na linha 10 (abaixo da primeira)
+    ssd1306_draw_string(&display, 0, 10, 1, buzzer_status_str); // Desenha na linha 10 (abaixo da primeira)
 
     ssd1306_show(&display); // Atualiza o display físico com o conteúdo do buffer
 
